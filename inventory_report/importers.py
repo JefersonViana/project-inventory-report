@@ -1,21 +1,25 @@
 from typing import Dict, Type
 from inventory_report.product import Product
 import abc
+import json
 
 
 class Importer(abc.ABC):
     def __init__(self, path: str) -> None:
-        super().__init__()
         self.path = path
-        self._import_data: list[Product] = []
+        self.data: list[Product] = []
 
     @abc.abstractmethod
     def import_data(self) -> list[Product]:
-        return self._import_data
+        return self.data
 
 
 class JsonImporter(Importer):
-    pass
+    def import_data(self) -> list[Product]:
+        with open(self.path, "r") as file:
+            self.data = [Product(**product) for product in json.load(file)]
+
+        return self.data
 
 
 class CsvImporter(Importer):
