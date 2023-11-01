@@ -37,3 +37,6 @@ def process_report_request(file_paths: List[str], report_type: str) -> str:
         return return_text
     else:
         raise ValueError("Report type is invalid.")
+
+
+# print(process_report_request(["tests/mocks/inventory.csv"], "simple"))

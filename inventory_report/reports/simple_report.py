@@ -41,7 +41,9 @@ class SimpleReport:
                 ):
                     expiration = current_date_ex
 
-            empresa, fixed = self.find_empresa(inventory, fixed)
+            new_empresa, count = self.find_empresa(inventory, fixed)
+            if fixed < count:
+                empresa = new_empresa
 
         return (
             f"Oldest manufacturing date: {manufacturing.date()}\n"
