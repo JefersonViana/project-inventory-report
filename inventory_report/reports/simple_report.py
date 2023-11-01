@@ -1,7 +1,6 @@
 from inventory_report.inventory import Inventory
 from datetime import datetime
 from collections import Counter
-import abc
 from typing import Any
 
 
@@ -12,7 +11,6 @@ class SimpleReport:
     def add_inventory(self, inventory: Inventory) -> None:
         self.inventories.append(inventory)
 
-    @abc.abstractmethod
     def find_empresa(self, inventory: Inventory, fixed: int):
         empresa: Any = ""
         fix = fixed
@@ -46,7 +44,7 @@ class SimpleReport:
             empresa, fixed = self.find_empresa(inventory, fixed)
 
         return (
-            f"Oldest manufacturing date: {manufacturing.date()} "
-            f"Closest expiration date: {expiration.date()} "
-            f"Company with the largest inventory: {empresa} "
+            f"Oldest manufacturing date: {manufacturing.date()}\n"
+            f"Closest expiration date: {expiration.date()}\n"
+            f"Company with the largest inventory: {empresa}\n"
         )
