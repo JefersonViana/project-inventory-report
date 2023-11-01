@@ -21,6 +21,3 @@ class Product:
             "must be stored according to the following instructions: "
             f"{self.storage_instructions}."
         )
-
-
-# print(Product("1", "product1", "company_fake1", "2020", "2030", "10", "18"))

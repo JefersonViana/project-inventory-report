@@ -1,7 +1,7 @@
 from inventory_report.inventory import Inventory
 from datetime import datetime
 from collections import Counter
-from typing import Any
+from typing import Tuple
 
 
 class SimpleReport:
@@ -11,19 +11,27 @@ class SimpleReport:
     def add_inventory(self, inventory: Inventory) -> None:
         self.inventories.append(inventory)
 
-    def find_empresa(self, inventory: Inventory, fixed: int):
-        empresa: Any = ""
+    def find_empresa(
+            self,
+            inventory: Inventory,
+            fixed: int) -> Tuple[str, int]:
+        empresa: str = ""
         fix = fixed
         if len(inventory.data) > fix:
             curr_empresa = Counter(
                 [product.company_name for product in inventory.data]
             )
-            empresa = max(curr_empresa, key=curr_empresa.get)
+            # NESTA LINHA EU ESTAVA USANDO UM curr_empres.get ->
+            # troquei por __getitem__ que faz a mesma coisa
+            empresa = max(curr_empresa, key=curr_empresa.__getitem__)
             fix = curr_empresa[empresa] if curr_empresa[empresa] > fix else fix
         return (empresa, fix)
 
-    def create_report(self, inventory: Inventory, exp_date: datetime,
-                      fut_date: datetime):
+    def create_report(
+            self,
+            inventory: Inventory,
+            exp_date: datetime,
+            fut_date: datetime) -> Tuple[datetime, datetime]:
         expiration = exp_date
         manufacturing = fut_date
         for product in inventory.data:

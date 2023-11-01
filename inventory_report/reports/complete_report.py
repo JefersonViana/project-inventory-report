@@ -17,14 +17,3 @@ class CompleteReport(SimpleReport):
             return_text += f"- {empresa}: {dict_empresas[empresa]}\n"
 
         return return_text
-
-
-# product1 = Product('1', 'iusto', 'Gomes Mor', '2023-10-15', '2023-12-13', 'ABCD', 'instrução 1')
-# product2 = Product('2', 'sapiente', 'Gomes Moraes Ltda.', '2023-10-15', '2023-12-13', 'ABCD', 'instrução 2')
-# product3 = Product('3', 'natus', 'Gomes Moraes Ltda.', '2023-10-15', '2023-10-15', 'ABCD', 'instrução 3')
-# product4 = Product('4', 'doloribus', 'Gomes Moraes Ltda. LIMITED', '2023-09-15', '2023-11-11', 'ABCD', 'instrução 4')
-# produtos = [product1, product2, product3, product4]
-# inventory = Inventory(produtos)
-# complete_report = CompleteReport()
-# complete_report.add_inventory(inventory)
-# print(complete_report.generate())
